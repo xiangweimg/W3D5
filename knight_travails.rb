@@ -13,16 +13,33 @@ class KnightPathFinder
                 valid_moves << [pos[0] + ele[0], pos[1] + ele[1]]
             end
         end
+        return valid_moves
     end
 
 
     def initialize(position)
         @position = position
+        @root_node = PolyTreeNode.new(position)
+        @considered_positions = [position]
     end
 
-    self.root_node = PolyTreeNode.new(position)
-
     def build_move_tree
+        queue =[@root_node]
+        child_node = new_move_positions(@root_node.value).each do |child|
+            
+        end
+        
+    end
+
+    def new_move_positions(pos)
+        new_positions = []
+        possible_moves = KnightPathFinder.valid_moves(pos)
+        possible_moves.reject!{|position| @considered_positions.include?(position)}
+        possible_moves.each do |moves|
+            @considered_positions << moves
+            new_positions << moves
+        end
+        new_positions
     end
 
 
