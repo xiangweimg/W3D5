@@ -1,4 +1,4 @@
-require '00_tree_node.rb'
+require './00_tree_node.rb'
 require 'byebug'
 
 class KnightPathFinder
@@ -54,9 +54,10 @@ class KnightPathFinder
         path = []
         current_node = node
         while !current_node.parent.nil?
-            path << current_node
+            path << current_node.value
             current_node = current_node.parent
         end
+        path << @root_node.value
         return path.reverse
     end
 
