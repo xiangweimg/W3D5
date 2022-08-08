@@ -25,10 +25,13 @@ class KnightPathFinder
 
     def build_move_tree
         queue =[@root_node]
-        child_node = new_move_positions(@root_node.value).each do |child|
-            
-        end
-        
+        until queue.empty?
+            child_node = new_move_positions(@root_node.value).each do |child|
+                node = queue.shift 
+                node.add_child(child)
+                queue << child
+            end
+        end  
     end
 
     def new_move_positions(pos)
@@ -42,5 +45,7 @@ class KnightPathFinder
         new_positions
     end
 
+    def 
 
+    end
 end
